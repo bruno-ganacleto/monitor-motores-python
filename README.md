@@ -50,3 +50,4 @@ Retorna uma tabela contendo o id, setor, temperatura , corrente, vibração e rp
 Termina exibindo as estatisticas de temperatura média, corrente média, potência total e maior temperatura.  
 
 > Criador do README: [Bruno Gabriel Anacleto](https://github.com/bruno-ganacleto)
+> Link para o site com a explicação do software: https://bruno-ganacleto.github.io/monitor-motores-python/
