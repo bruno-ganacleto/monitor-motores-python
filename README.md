@@ -49,5 +49,5 @@ CRÍTICO | MTR-02 | Usinagem | 84.7 C | 19.3A | 5.2 mm/s | 1690
 Retorna uma tabela contendo o id, setor, temperatura , corrente, vibração e rpg de cada motor, junto de seus status e alertas.
 Termina exibindo as estatisticas de temperatura média, corrente média, potência total e maior temperatura.  
 
-> Criador do README: [Bruno Gabriel Anacleto](https://github.com/bruno-ganacleto)
+> Criador do README: [Bruno Gabriel Anacleto](https://github.com/bruno-ganacleto)  
 > Link para o site com a explicação do software: https://bruno-ganacleto.github.io/monitor-motores-python/
