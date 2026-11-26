@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento de Motores Industriais | Python</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <span class="badge">Manutenção Preditiva &amp; Indústria 4.0</span>
+            <h1>Monitoramento de Motores em Python</h1>
+            <p class="subtitle">Documentação técnica, parâmetros operacionais monitorados e implementação de telemetria e análise de falhas em tempo real.</p>
+            <a href="https://github.com/bruno-ganacleto/monitor-motores-python" target="_blank" rel="noopener noreferrer" class="btn-github">
+                <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+                Acessar Repositório no GitHub
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="card" id="explicacao-tecnica">
+            <h2>1. Explicação Técnica</h2>
+            <p>
+                O sistema foi projetado para realizar a aquisição, o processamento e o diagnóstico contínuo das condições operacionais de motores elétricos industriais. Utilizando Python como núcleo de processamento, a aplicação realiza a leitura cíclica de sensores (ou simulações de telemetria via protocolos industriais como Modbus/MQTT) e compara as grandezas medidas contra limites nominais de segurança.
+            </p>
+            <div class="architecture-grid">
+                <div class="arch-item">
+                    <h3>Aquisição de Dados</h3>
+                    <p>Leitura periódica dos sensores acoplados à carcaça, mancais e quadro de alimentação do motor.</p>
+                </div>
+                <div class="arch-item">
+                    <h3>Análise de Limiares</h3>
+                    <p>Classificação automática do estado operacional em <strong>Normal</strong>, <strong>Alerta</strong> ou <strong>Crítico</strong> com base em faixas de tolerância.</p>
+                </div>
+                <div class="arch-item">
+                    <h3>Registro e Alarme</h3>
+                    <p>Geração de logs estruturados com carimbo de data/hora (timestamp) e disparo preventivo de alertas para a equipe de manutenção.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card" id="parametros">
+            <h2>2. Parâmetros Monitorados</h2>
+            <p>A tabela abaixo detalha as principais variáveis físicas e elétricas supervisionadas pelo algoritmo:</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parâmetro</th>
+                            <th>Unidade</th>
+                            <th>Faixa Normal</th>
+                            <th>Limite Crítico</th>
+                            <th>Impacto / Falha Associada</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Temperatura</strong></td>
+                            <td>°C</td>
+                            <td>40 °C – 75 °C</td>
+                            <td>&gt; 85 °C</td>
+                            <td>Sobrecarga térmica, falha de ventilação ou degradação do isolamento.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vibração (RMS)</strong></td>
+                            <td>mm/s</td>
+                            <td>0,5 – 2,8 mm/s</td>
+                            <td>&gt; 4,5 mm/s</td>
+                            <td>Desalinhamento de eixo, desbalanceamento mecânico ou desgaste de rolamentos.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Corrente Elétrica</strong></td>
+                            <td>A</td>
+                            <td>10 A – 18 A</td>
+                            <td>&gt; 20 A</td>
+                            <td>Travamento mecânico, subtensão na rede ou excesso de carga no eixo.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rotação (RPM)</strong></td>
+                            <td>rpm</td>
+                            <td>1720 – 1780 rpm</td>
+                            <td>&lt; 1650 rpm</td>
+                            <td>Escorregamento excessivo do rotor ou queda de torque nominal.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="card" id="codigo-python">
+            <h2>3. Código-Fonte em Python</h2>
+            <p class="note"><em>Nota: Como o snippet original não foi incluído na solicitação, apresenta-se abaixo a estrutura de referência compatível com a arquitetura de monitoramento. Substitua pelo código exato do repositório, se desejar.</em></p>
+            <div class="code-container">
+                <div class="code-header">
+                    <span>monitor_motor.py</span>
+                    <span class="lang-tag">Python 3</span>
+                </div>
+                <pre><code>import time
+import random
+from datetime import datetime
+
+# Limites operacionais configurados para o motor
+LIMITES = {
+    "temperatura": {"alerta": 75.0, "critico": 85.0, "unidade": "°C"},
+    "vibracao":    {"alerta": 2.8,  "critico": 4.5,  "unidade": "mm/s"},
+    "corrente":    {"alerta": 18.0, "critico": 20.0, "unidade": "A"},
+    "rpm":         {"min_alerta": 1700, "min_critico": 1650, "unidade": "rpm"}
+}
+
+def ler_sensores():
+    """Simula a coleta de telemetria dos sensores do motor."""
+    return {
+        "temperatura": round(random.uniform(55.0, 90.0), 2),
+        "vibracao":    round(random.uniform(1.0, 5.0), 2),
+        "corrente":    round(random.uniform(12.0, 21.5), 2),
+        "rpm":         random.randint(1630, 1775)
+    }
+
+def avaliar_status(leituras):
+    """Classifica a condição operacional com base nos limiares definidos."""
+    alertas = []
+    status_geral = "NORMAL"
+
+    for param in ["temperatura", "vibracao", "corrente"]:
+        valor = leituras[param]
+        if valor >= LIMITES[param]["critico"]:
+            status_geral = "CRÍTICO"
+            alertas.append(f"{param.upper()} CRÍTICA ({valor} {LIMITES[param]['unidade']})")
+        elif valor >= LIMITES[param]["alerta"]:
+            if status_geral != "CRÍTICO":
+                status_geral = "ALERTA"
+            alertas.append(f"{param.upper()} EM ALERTA ({valor} {LIMITES[param]['unidade']})")
+
+    if leituras["rpm"] <= LIMITES["rpm"]["min_critico"]:
+        status_geral = "CRÍTICO"
+        alertas.append(f"ROTAÇÃO BAIXA CRÍTICA ({leituras['rpm']} rpm)")
+    elif leituras["rpm"] <= LIMITES["rpm"]["min_alerta"]:
+        if status_geral != "CRÍTICO":
+            status_geral = "ALERTA"
+        alertas.append(f"ROTAÇÃO EM ALERTA ({leituras['rpm']} rpm)")
+
+    return status_geral, alertas
+
+def executar_monitoramento(ciclos=5, intervalo=2):
+    print("Iniciando monitoramento de motores industriais...\n")
+    for _ in range(ciclos):
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        dados = ler_sensores()
+        status, ocorrencias = avaliar_status(dados)
+
+        print(f"[{timestamp}] Status: {status} | Dados: {dados}")
+        for item in ocorrencias:
+            print(f"   -> Alarme: {item}")
+        time.sleep(intervalo)
+
+if __name__ == "__main__":
+    executar_monitoramento()
+</code></pre>
+            </div>
+        </section>
+
+        <section class="card repo-card" id="repositorio">
+            <h2>4. Repositório Oficial</h2>
+            <p>Consulte o código completo, histórico de commits, instruções de instalação e arquivos de configuração diretamente no GitHub:</p>
+            <a href="https://github.com/bruno-ganacleto/monitor-motores-python" target="_blank" rel="noopener noreferrer" class="repo-link">
+                https://github.com/bruno-ganacleto/monitor-motores-python
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Documentação Técnica &bull; Projeto Monitor de Motores em Python</p>
+        </div>
+    </footer>
+</body>
+</html>
